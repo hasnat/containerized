@@ -1,0 +1,16 @@
+node () {
+    tty=
+    tty -s && tty=--tty
+    docker run \
+        $tty \
+        --interactive \
+        --net=host \
+        --rm \
+        --workdir "$PWD" \
+        --volume "$PWD":"$PWD" \
+        node:8 "$@"
+}
+
+npm () {
+    node npm "$@"
+}
